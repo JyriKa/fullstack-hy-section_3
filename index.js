@@ -59,7 +59,7 @@ app.put('/api/persons/:id', (request, response, next) => {
             person.name = body.name
             person.number = body.number
             person.save().then(() => response.status(200).end())
-                .catch(() => response.status(500).end())
+                .catch(err => next(err))
             return
         }
         response.status(400).send({ error: 'malformatted id' })
